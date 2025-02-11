@@ -12,13 +12,24 @@ function addTask(){
     let textInput=document.getElementById("taskInput");
     let taskText=textInput.value;
 
-    addTaskToDOM(taskText)
+    if (taskText !== null && taskText.trim() !== "") { 
+        addTaskToDOM(taskText); 
+        let tasks=JSON.parse(localStorage.getItem("tasks")) || []
+        tasks.push(taskText);
+        localStorage.setItem("tasks",JSON.stringify(tasks))
+        textInput.value="";
+
+    } else {
+        alert("Task cannot be empty!"); 
+    }
+
+    // addTaskToDOM(taskText)
 
 
-    let tasks=JSON.parse(localStorage.getItem("tasks")) || []
-    tasks.push(taskText);
-    localStorage.setItem("tasks",JSON.stringify(tasks))
-    textInput.value="";
+    // let tasks=JSON.parse(localStorage.getItem("tasks")) || []
+    // tasks.push(taskText);
+    // localStorage.setItem("tasks",JSON.stringify(tasks))
+    // textInput.value="";
 
     
 }
